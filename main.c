@@ -14,6 +14,7 @@ void clear_term()
 
 int main()
 {
+start:
     int x=1;
     int mistakes=0;
     int starttime=0;
@@ -43,7 +44,7 @@ int main()
     int first_time=1;
     for (;;)
     {
-        if (x == len)
+        if (x-1 == len)
         {
             gotoxy(0, 1);
             clear_term();
@@ -54,8 +55,8 @@ int main()
             printf("Accuracy %%: %.2f%%\n", (((float)len-(float)mistakes)/(float)len)*100);
             printf("Time: %d\n", (int)time(NULL) - starttime);
             printf("WPM: %.2f\n", ((float)len/(float)(time(NULL)-starttime))*60/5);
-            system("stty sane");
-            exit(0);
+            getc(stdin);
+            goto start;
         }
         gotoxy(x, 0);
         char a = getc(stdin);
@@ -63,6 +64,10 @@ int main()
         {
             system("stty sane");
             exit(0);
+        }
+        if (a==9)
+        {
+            goto start;
         }
         if (a == text[x-1])
         {

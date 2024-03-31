@@ -48,19 +48,20 @@ int main()
             gotoxy(0, 1);
             clear_term();
             gotoxy(0, 1);
-            printf("Text: %s\n", text);
+            printf("%s\n", text);
             if (mistakes) printf("Mistakes: %d\n", mistakes);
             else printf("Mistakes: 0, PERFECT!\n");
             printf("Accuracy %%: %.2f%%\n", (((float)len-(float)mistakes)/(float)len)*100);
             printf("Time: %d\n", (int)time(NULL) - starttime);
             printf("WPM: %.2f\n", ((float)len/(float)(time(NULL)-starttime))*60/5);
-            
+            system("stty sane");
             exit(0);
         }
         gotoxy(x, 0);
         char a = getc(stdin);
         if (a=='\033')
         {
+            system("stty sane");
             exit(0);
         }
         if (a == text[x-1])

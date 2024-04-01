@@ -1,4 +1,4 @@
 #!/bin/bash
-prun
+pmake
 ./build/type
 stty sane
